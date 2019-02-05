@@ -16,4 +16,4 @@ validated the pipeline using real life user provided images.
 
 Try it out !!!
 
-[CompostMeNot](http://compostmenot.appspot.com)
+[CompostMeNot](https://compostmenot.appspot.com)
