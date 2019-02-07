@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import os,sys
+import os,sys,uuid,subprocess
 from flask import Flask, flash, request, redirect, url_for, render_template, send_from_directory
 from werkzeug.utils import secure_filename
 
@@ -20,6 +20,14 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def index():
    return redirect(url_for('upload_file'))
 
+@app.route('/cleanse')
+def clean():
+   for _file in os.listdir(app.config['UPLOAD_FOLDER']):
+      _path = os.path.join(app.config['UPLOAD_FOLDER'], _file)
+      os.unlink(_path)
+   _t = subprocess.run(['cp', 'foo.dat', 'tmp/'], stdout=subprocess.PIPE)
+   return redirect(url_for('upload_file'))
+
 def allowed_file(filename):
    return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -29,20 +37,19 @@ def upload_file():
    if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
-            flash('No file part')
             return render_template("upload.html")
         file = request.files['file']
-        # if user does not select file or provides
-        # filetypes noyt allowed
+        # if user provides filetypes not allowed
         if not allowed_file(file.filename):
             return render_template("upload.html")
         if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
+            filename = '_'.join((str(uuid.uuid4())[:8],secure_filename(file.filename)))
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            col,msg = DoAll(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            col,rec,msg = DoAll(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return render_template("result.html",
                                    filename='/uploads/'+filename,
-                                   recommend=msg,
+                                   message=msg,
+                                   recommend=rec,
                                    col=col)
    return render_template("upload.html")
 

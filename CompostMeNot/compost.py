@@ -55,13 +55,15 @@ def best_guess(vision,clf=clf,vectorizer=vectorizer):
     if pred==0:
         col = 'red'
         rec = 'CompostMeNot :-( :-( :-('
+        msg = 'Remember: Anything labeled “Compostable” or “#7 PLA” goes to the food and yard waste.'
     else:
         col = 'green'
         rec = 'CompostMe!!! Yaaaay!!!!!!'
-    return col,rec
+        msg = 'Remember: dry paper/cardboard products go to recycle, wet/greasy/soiled ones to compost.'
+    return col,rec,msg
 
 def DoAll(filename):
     vision = get_labels(filename)
-    col,rec = best_guess(vision)
+    col,rec,msg = best_guess(vision)
     rec = '\n{:s}\n'.format(rec)
-    return col,rec
+    return col,rec,msg
