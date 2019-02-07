@@ -14,6 +14,10 @@ pages from Seattle.gov, cleaned data, tackled imbalanced classes
 via class weights, trained the NLP+ML models and end-to-end 
 validated the pipeline using real life user provided images.
 
-Try it out !!!
+The Notebooks demonstrates key steps of developing 
+this product and the project namesake directory contains 
+the deployed codebase.
+
+Please try it out !!!
 
 [CompostMeNot](https://compostmenot.appspot.com)
