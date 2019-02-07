@@ -54,8 +54,8 @@ def best_guess(vision,clf=clf,vectorizer=vectorizer):
     pred = get_weighted_class(vision)
     if pred==0:
         col = 'red'
-        rec = 'CompostMeNot :-( :-( :-('
-        msg = 'Remember: Anything labeled “Compostable” or “#7 PLA” goes to the food and yard waste.'
+        rec = 'CompostMeNot :-('
+        msg = 'Remember: anything labeled “Compostable” or “#7 PLA” goes to the food and yard waste.'
     else:
         col = 'green'
         rec = 'CompostMe!!! Yaaaay!!!!!!'
