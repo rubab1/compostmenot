@@ -16,15 +16,12 @@ pages from Seattle.gov to train Machine Learning models on telling
 apart compostable from non-compostables, then cleaned, lemmatized 
 and vectorized the data. Then I tackled imbalanced classes via 
 class weights, optimized the ML models and end-to-end validated 
-the pipeline using real life user provided images. he HTML/CSS frontend 
+the pipeline using real life user provided images. The HTML/CSS frontend 
 uses Python Flask and Bootstrap. It has been deployed using the Google 
-App Engine platform
+App Engine platform. The Notebooks here demonstrates key steps of developing
+this product and the project namesake directory contains
+the deployed codebase.
 
 Please try it out !!!
 
 [CompostMeNot](https://compostmenot.appspot.com)
-
-
-In this repo, the Notebooks demonstrates key steps of developing 
-this product and the project namesake directory contains 
-the deployed codebase.
